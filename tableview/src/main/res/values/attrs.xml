@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <declare-styleable name="TableView">
+        <attr name="table_show_horizontal_separator" format="boolean" />
+        <attr name="table_show_vertical_separator" format="boolean" />
+        <attr name="table_column_header_height" format="dimension" />
+        <attr name="table_row_header_width" format="dimension" />
+        <attr name="table_unselected_color" format="color" />
+        <attr name="table_separator_color" format="color" />
+        <attr name="table_selected_color" format="color" />
+        <attr name="table_shadow_color" format="color" />
+    </declare-styleable>
+</resources>

@@ -1,0 +1,121 @@
+apply plugin: 'jacoco'
+
+jacoco {
+    toolVersion '0.8.7'
+}
+
+tasks.withType(Test) {
+    jacoco.includeNoLocationClasses = true
+    jacoco.excludes = ['jdk.internal.*']
+}
+
+project.afterEvaluate {
+    def variants = ["debug"]
+
+    tasks.create(name: "allDebugCoverage", type: JacocoReport) {
+
+        group = "Reporting"
+        description = "Generate overall Jacoco coverage report for the debug build."
+
+        reports {
+            xml.required = true
+            csv.required = true
+            html.required = true
+        }
+        def excludes = [
+                '**/R.class',
+                '**/R$*.class',
+                '**/BuildConfig.*',
+                '**/Event.*',
+                '**/AppConfig.*',
+                '**/EventCacheInfo.*',
+                '**/Location.*',
+                '**/externalCalendar/compose/*.*',
+                '**/Manifest*.*',
+//        '**/*Test*.*',
+                '**/*Log*.*',
+                'android/**/*.*',
+                '**/jdo/*.*',
+                '**/listeners/*.*',
+                '**/compose/components/*.*',
+                '**/compose/components/theme/*.*',
+                '**/compose/*.*',
+                '**/compose/recurring/ui/theme/*.*',
+                '**/Retrofit/*.*',
+                '**/models/*.*',
+                '**/adapter/*.*',
+                '**/fragments/*.*',
+                '**/interface/*.*',
+                '**/factory/*.*',
+                '**/layout/*.*',
+                '**/values/*.*',
+                '**/javascript/*.*',
+                'androidx/**/*.*',
+                '**/com/full/calendarsdk/**/*.*',
+                '**com/anywhere/bookingpolicy/**/*.*',
+                '**/*$ViewInjector*.*',
+                '**/*Dagger*.*',
+                '**/*I.*',
+                '**/*Listener*.*',
+//        '**/*Test*.*',
+                '**/*MembersInjector*.*',
+                '**/*_Factory.*',
+                '**/*_Provide*Factory*.*',
+                '**/*_ViewBinding*.*',
+                '**/AutoValue_*.*',
+                '**/R2.class',
+                '**/R2$*.class',
+                '**/*Binding.*',
+                '**/*Preference*.*',
+                '**/*Constant*.*',
+                '**/*Resource*.*',
+                '**/*DAO*.*',
+                '**/*Builder*.*',
+                '**/models/*.*',
+                '**/api/*.*',
+                '**/enum/*.*',
+                '**/*SDK*.*',
+                '**/*View.*',
+                '**/*fragment*.*',
+                '**/*SDKException*.*',
+                '**/CalendarControllerFragment.kt.*',
+                '**/res/**/*.*',
+        ]
+        def jClasses = subprojects.collect { proj ->
+            variants.collect { variant ->
+                "${proj.buildDir}/intermediates/javac/$variant/classes"
+            }
+        }.flatten()
+        def kClasses = subprojects.collect { proj ->
+            variants.collect { variant ->
+                "${proj.buildDir}/tmp/kotlin-classes/$variant"
+            }
+        }.flatten()
+
+        def javaClasses = jClasses.collect { path ->
+            fileTree(dir: path, excludes: excludes)
+        }
+        def kotlinClasses = kClasses.collect { path ->
+            fileTree(dir: path, excludes: excludes)
+        }
+
+        classDirectories.from = files([javaClasses, kotlinClasses])
+        def sources = subprojects.collect { proj ->
+            variants.collect { variant ->
+                ["${proj.projectDir}/src/main/java", "${proj.projectDir}/src/main/kotlin",
+                 "${proj.projectDir}/src/$variant/java", "${proj.projectDir}/src/$variant/kotlin"]
+            }.flatten()
+        }.flatten()
+        sourceDirectories.from = files(sources)
+
+        def executions = subprojects.collect { proj ->
+            variants.collect { variant ->
+                def path = "${proj.buildDir}/jacoco/test${variant.capitalize()}UnitTest.exec"
+//                if ((new File(path)).exists()) path else null
+            }
+        }.flatten()
+        executions.removeAll([null])
+
+        executionData.from = files(executions)
+    }
+}

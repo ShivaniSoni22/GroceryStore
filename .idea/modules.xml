@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/GroceryStore.iml" filepath="$PROJECT_DIR$/.idea/modules/GroceryStore.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/GroceryStore.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/GroceryStore.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/GroceryStore.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/GroceryStore.app.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/GroceryStore.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/GroceryStore.app.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/GroceryStore.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/GroceryStore.app.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/tableview/GroceryStore.tableview.iml" filepath="$PROJECT_DIR$/.idea/modules/tableview/GroceryStore.tableview.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/tableview/GroceryStore.tableview.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/tableview/GroceryStore.tableview.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/tableview/GroceryStore.tableview.main.iml" filepath="$PROJECT_DIR$/.idea/modules/tableview/GroceryStore.tableview.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/tableview/GroceryStore.tableview.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/tableview/GroceryStore.tableview.unitTest.iml" />
+    </modules>
+  </component>
+</project>

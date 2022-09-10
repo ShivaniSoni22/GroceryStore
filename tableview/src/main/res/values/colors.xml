@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <color name="table_view_default_unselected_background_color">#FFFFFF</color>
+    <color name="table_view_default_selected_background_color">#FADA65</color>
+    <color name="table_view_default_shadow_background_color">#F2F2F2</color>
+    <color name="table_view_default_separator_color">#E7E7E7</color>
+    <color name="table_view_default_text_color">#0A0A0A</color>
+</resources>
